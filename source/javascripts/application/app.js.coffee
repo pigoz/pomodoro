@@ -35,3 +35,8 @@
       -> @Pomodoro.currentPomodoro.down() ), 1000)
 
 @Pomodoro.currentPomodoro = @Pomodoro.Pomodoro.create()
+
+@Pomodoro.ToggleButton = Em.View.extend
+  tagName: "a"
+  click: ->
+    window.Pomodoro.currentPomodoro.toggle()

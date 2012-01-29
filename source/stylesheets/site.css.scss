@@ -17,10 +17,11 @@ $gutter-width: 1em;
 $side-gutter-width: $gutter-width;
 
 @include global-reset;
+@import "blueprint/buttons";
 
 body {
   font-family: $font-family;
-  color: $font-color; 
+  color: $font-color;
 }
 
 a {
@@ -28,5 +29,32 @@ a {
 }
 
 #main {
-  padding: 50px;
+  //width: 200px;
+  margin: 80px auto;
+}
+
+#toggle {
+  @include border-radius(5px);
+  @include anchor-button();
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+  font-size: 14px;
+  padding: 8px 14px 9px;
+  display: block;
+  width: 120px;
+  margin: 10px auto;
+  text-align: center;
+}
+
+#toggle.running {
+  @include button-colors(#fff, #e33100, #872300, #e33100);
+}
+
+#toggle.stopped {
+  @include button-colors(#fff, #008800, #003A00, #008800);
+}
+
+#time {
+  @include border-radius(5px);
+  font-size: 6em;
+  text-align: center;
 }
