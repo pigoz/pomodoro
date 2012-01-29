@@ -1,5 +1,18 @@
 <% content_for :head do %>
-  <title>The Middleman!</title>
+  <title>Pomodoro</title>
 <% end%>
 
-<h1>The Middleman is watching.</h1>
+<script type="text/x-handlebars">
+  <div class="time">{{Pomodoro.currentPomodoro.time}}</div>
+  {{#view Em.Button id="toggle"
+    classBinding="Pomodoro.currentPomodoro.status"
+    target="Pomodoro.currentPomodoro"
+    action="toggle"}}
+    {{#if Pomodoro.currentPomodoro.isRunning }}
+      Stop
+    {{else}}
+      Start
+    {{/if}}
+  {{/view}}
+</script>
+<%= javascript_include_tag 'application' %>
