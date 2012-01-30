@@ -13,9 +13,7 @@
       @nativeNotification().show()
       @showed = true
 
-@Pomodoro.Pomodoro = Em.Object.extend
-  secondsLeft: 25*60
-
+@Pomodoro.Timer = Em.Object.extend
   time: ( ->
     sl = @get 'secondsLeft'
     sign = if sl > 0 then "" else "-"
@@ -39,8 +37,8 @@
     if newsl < 1
       @n ||= Pomodoro.Notification.create
         icon: "/images/pomodoro-icon.png"
-        title: "Pomodoro ended!"
-        text: "You worked hard, time to check twitter :)"
+        title: @doneNotificationTitle
+        text:  @doneNotificationText
       @n.show()
 
   toggle: ->
@@ -52,14 +50,29 @@
 
   start: ->
     @set "iid", (setInterval (
-      -> @Pomodoro.currentPomodoro.down() ), 1000)
+      -> @Pomodoro.currentTimer.down() ), 1000)
 
-@Pomodoro.currentPomodoro = @Pomodoro.Pomodoro.create()
+@Pomodoro.Pomodoro = @Pomodoro.Timer.extend
+  secondsLeft: 25*60
+  doneNotificationTitle: "Pomodoro ended!"
+  doneNotificationText: "You worked hard, time to slack off :)"
+
+@Pomodoro.SmallPause = @Pomodoro.Timer.extend
+  secondsLeft: 5*60
+  doneNotificationTitle: "Pause ended!"
+  doneNotificationText: "I know you want more time, but it's time to work."
+
+@Pomodoro.BigPause = @Pomodoro.Timer.extend
+  secondsLeft: 5*60
+  doneNotificationTitle: "Pause ended!"
+  doneNotificationText: "It's time to go back to work."
+
+@Pomodoro.currentTimer = @Pomodoro.Pomodoro.create()
 
 @Pomodoro.ToggleButton = Em.View.extend
   tagName: "a"
   click: ->
-    window.Pomodoro.currentPomodoro.toggle()
+    window.Pomodoro.currentTimer.toggle()
 
 @Pomodoro.NotificationsButton = Em.View.extend
   tagName: "a"

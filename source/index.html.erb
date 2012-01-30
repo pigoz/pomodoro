@@ -3,13 +3,13 @@
 <% end%>
 
 <script type="text/x-handlebars">
-  <div id="time">{{Pomodoro.currentPomodoro.time}}</div>
+  <div id="time">{{Pomodoro.currentTimer.time}}</div>
   {{#view Pomodoro.ToggleButton id="toggle"
-      classBinding="Pomodoro.currentPomodoro.status" }}
-    {{#if Pomodoro.currentPomodoro.isRunning }}
-      Stop Pomodoro
+      classBinding="Pomodoro.currentTimer.status" }}
+    {{#if Pomodoro.currentTimer.isRunning }}
+      Stop timer
     {{else}}
-      Start Pomodoro
+      Start timer
     {{/if}}
   {{/view}}
   {{#view Pomodoro.NotificationsButton id="enable-notifications"}}
