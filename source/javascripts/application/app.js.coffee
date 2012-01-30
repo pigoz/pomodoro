@@ -38,6 +38,7 @@
     @set 'secondsLeft', newsl
     if newsl < 1
       @n ||= Pomodoro.Notification.create
+        icon: "/images/pomodoro-icon.png"
         title: "Pomodoro ended!"
         text: "You worked hard, time to check twitter :)"
       @n.show()
