@@ -2,11 +2,11 @@
   <title>Pomodoro</title>
 <% end%>
 
-<script type="text/x-handlebars">
-  <div id="time">{{Pomodoro.currentTimer.time}}</div>
+<script type="text/x-handlebars" data-template-name="appView">
+  <div id="time">{{timer.time}}</div>
   {{#view Pomodoro.ToggleButton id="toggle"
-      classBinding="Pomodoro.currentTimer.status" }}
-    {{#if Pomodoro.currentTimer.isRunning }}
+      classBinding="timer.status" }}
+    {{#if timer.isRunning }}
       Stop timer
     {{else}}
       Start timer

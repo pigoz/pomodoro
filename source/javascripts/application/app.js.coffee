@@ -1,2 +1,2 @@
-@Pomodoro.currentTimer = @Pomodoro.Pomodoro.create()
-
+@Pomodoro.appView = @Pomodoro.AppView.create()
+@Pomodoro.appView.appendTo "body"

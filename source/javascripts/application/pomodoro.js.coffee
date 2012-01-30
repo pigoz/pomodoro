@@ -34,8 +34,10 @@
     @set "iid", undefined
 
   start: ->
-    @set "iid", (setInterval (
-      -> @Pomodoro.currentTimer.down() ), 1000)
+    @set "iid",
+      setInterval =>
+        @down()
+      , 1000
 
 @Pomodoro.Pomodoro = @Pomodoro.Timer.extend
   secondsLeft: 25*60
